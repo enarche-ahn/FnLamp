@@ -4,7 +4,7 @@
 
 > A native macOS app that lets you check and toggle the fn key mode right from the menu bar
 
-<img src="FnLamp.png" width="50%" alt="FnLamp icon">
+<img src="asset/FnLamp.png" width="20%" alt="FnLamp icon">
 
 ---
 
@@ -28,6 +28,8 @@ FnLamp solves both of these annoyances.
 | **External change detection** | Automatically syncs the indicator if the mode is changed via System Settings or any other path |
 
 ### Reading the menu bar indicator
+
+<img src="asset/FnLamp-menubar.jpg" alt="FnLamp Menubar icon">
 
 ```
 fn  🟢   ← Standard Function Keys mode (F1, F2, F3 …)

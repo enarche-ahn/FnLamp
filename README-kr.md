@@ -4,7 +4,7 @@
 
 > macOS 메뉴바에서 fn키 모드를 한 번에 확인하고 전환하는 네이티브 앱
 
-<img src="FnLamp.png" width="50%" alt="FnLamp icon">
+<img src="asset/FnLamp.png" width="20%" alt="FnLamp icon">
 
 ---
 
@@ -28,6 +28,8 @@ FnLamp는 이 두 가지 불편을 없애줍니다.
 | **외부 변경 감지** | 설정 앱 등 다른 경로로 변경되어도 자동으로 표시등 동기화 |
 
 ### 메뉴바 표시등 읽는 법
+
+<img src="asset/FnLamp-menubar.jpg" alt="FnLamp Menubar icon">
 
 ```
 fn  🟢   ← 표준 기능 키 모드 (F1, F2, F3 …)
