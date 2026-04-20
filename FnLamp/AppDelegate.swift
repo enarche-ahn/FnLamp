@@ -80,23 +80,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func configureMenu() {
         let menu = NSMenu()
 
-        let toggleItem = NSMenuItem(title: "fn 토글", action: #selector(toggleFn), keyEquivalent: "t")
+        let toggleItem = NSMenuItem(title: "Toggle fn Key", action: #selector(toggleFn), keyEquivalent: "t")
         toggleItem.target = self
         menu.addItem(toggleItem)
 
-        let refreshItem = NSMenuItem(title: "상태 새로고침", action: #selector(refreshState), keyEquivalent: "r")
+        let refreshItem = NSMenuItem(title: "Refresh State", action: #selector(refreshState), keyEquivalent: "r")
         refreshItem.target = self
         menu.addItem(refreshItem)
 
         menu.addItem(NSMenuItem.separator())
 
-        let shortcutItem = NSMenuItem(title: "단축키 설정…", action: #selector(openShortcutSettings), keyEquivalent: "")
+        let shortcutItem = NSMenuItem(title: "Shortcut Settings…", action: #selector(openShortcutSettings), keyEquivalent: "")
         shortcutItem.target = self
         menu.addItem(shortcutItem)
 
         menu.addItem(NSMenuItem.separator())
 
-        let quitItem = NSMenuItem(title: "종료", action: #selector(quitApp), keyEquivalent: "q")
+        let quitItem = NSMenuItem(title: "Quit", action: #selector(quitApp), keyEquivalent: "q")
         quitItem.target = self
         menu.addItem(quitItem)
 
@@ -107,7 +107,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func configurePopover() {
         popover.behavior = .transient
         popover.animates = true
-        popover.contentSize = NSSize(width: 250, height: 66)
+        popover.contentSize = NSSize(width: 300, height: 66)
     }
 
     // Reads the current fn key state directly from the global user defaults domain.
@@ -125,8 +125,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         hostingView?.rootView = LampStackView(isFnMode: isFnMode)
         statusItem.button?.toolTip = isFnMode
-            ? "표준 기능 키 모드 (F1, F2 ...)"
-            : "특수 기능 키 모드 (밝기/음량 등)"
+            ? "Standard Function Keys (F1, F2 ...)"
+            : "Special Function Keys (Brightness, Volume, etc.)"
 
         defer {
             lastKnownFnState = isFnMode
@@ -148,12 +148,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         popoverDismissWorkItem?.cancel()
 
         let title = isFnMode
-            ? "표준 기능 키 모드로 전환되었습니다"
-            : "특수 기능 키 모드로 전환되었습니다"
+            ? "Switched to Standard Function Keys"
+            : "Switched to Special Function Keys"
 
         let subtitle = isFnMode
-            ? "F1, F2 같은 기능 키를 바로 입력합니다"
-            : "밝기, 음량 같은 하드웨어 기능을 우선 사용합니다"
+            ? "F1, F2 and other function keys work directly"
+            : "Hardware controls (brightness, volume) take priority"
 
         popover.contentViewController = NSHostingController(
             rootView: ModePopoverView(
@@ -344,7 +344,7 @@ struct ModePopoverView: View {
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 12)
-        .frame(width: 250, height: 66, alignment: .leading)
+        .frame(width: 300, height: 66, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .fill(.ultraThinMaterial)

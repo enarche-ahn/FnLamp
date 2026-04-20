@@ -27,7 +27,7 @@ final class ShortcutRecorderState: ObservableObject {
     // Esc without modifiers cancels; any other key+modifier combination is captured.
     func startRecording() {
         isRecording = true
-        displayText = "키를 입력하세요…"
+        displayText = "Press a key…"
         pendingKeyCode = nil
         pendingModifiers = nil
 
@@ -82,11 +82,11 @@ struct ShortcutSettingsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("전역 단축키 설정")
+            Text("Global Shortcut Settings")
                 .font(.headline)
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("단축키")
+                Text("Shortcut")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
 
@@ -109,7 +109,7 @@ struct ShortcutSettingsView: View {
                 )
 
                 if state.isRecording {
-                    Text("Esc 키로 취소")
+                    Text("Press Esc to cancel")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -117,13 +117,13 @@ struct ShortcutSettingsView: View {
 
             HStack {
                 Spacer()
-                Button("취소") {
+                Button("Cancel") {
                     state.cancelRecording(originalKeyCode: originalKeyCode, originalModifiers: originalModifiers)
                     onCancel()
                 }
                 .keyboardShortcut(.cancelAction)
 
-                Button("저장") {
+                Button("Save") {
                     let kc  = state.pendingKeyCode  ?? originalKeyCode
                     let mod = state.pendingModifiers ?? originalModifiers
                     onSave(kc, mod)
@@ -175,7 +175,7 @@ final class ShortcutWindowController: NSObject, NSWindowDelegate {
             backing: .buffered,
             defer: false
         )
-        panel.title = "단축키 설정"
+        panel.title = "Shortcut Settings"
         panel.isFloatingPanel = true
         panel.becomesKeyOnlyIfNeeded = false
         panel.center()
@@ -193,8 +193,8 @@ final class ShortcutWindowController: NSObject, NSWindowDelegate {
                         panel?.close()
                     } else {
                         let alert = NSAlert()
-                        alert.messageText = "단축키 등록 실패"
-                        alert.informativeText = "해당 단축키가 다른 앱에 의해 이미 사용 중입니다. 다른 조합을 선택해 주세요."
+                        alert.messageText = "Shortcut Registration Failed"
+                        alert.informativeText = "This shortcut is already in use by another app. Please choose a different combination."
                         alert.alertStyle = .warning
                         if let w = panel { alert.beginSheetModal(for: w) }
                     }
